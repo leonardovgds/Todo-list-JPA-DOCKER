@@ -14,13 +14,22 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 
-
+@Entity
+@Table(name = "todos")
 public class Todo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "task_name", length=50, nullable = false, unique=false)
     private String name;
+    @Column(name = "task_description", length=50, unique=false)
     private String description;
+
+    @Column(name = "task_status", length=50, nullable = false, unique=false)
     private Boolean isFinished;
+
+    @Column(name = "task_priority", length=50, nullable = false, unique=false)
     private int priority;
 }
