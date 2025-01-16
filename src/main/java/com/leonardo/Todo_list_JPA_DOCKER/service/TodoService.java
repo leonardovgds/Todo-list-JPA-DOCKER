@@ -1,4 +1,4 @@
-package com.leonardo.Todo_list_JPA_DOCKER;
+package com.leonardo.Todo_list_JPA_DOCKER.service;
 
 import java.util.List;
 

@@ -3,8 +3,8 @@ package com.leonardo.Todo_list_JPA_DOCKER.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.leonardo.Todo_list_JPA_DOCKER.TodoService;
 import com.leonardo.Todo_list_JPA_DOCKER.entity.Todo;
+import com.leonardo.Todo_list_JPA_DOCKER.service.TodoService;
 
 import java.util.List;
 
