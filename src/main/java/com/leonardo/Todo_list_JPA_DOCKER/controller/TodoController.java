@@ -31,7 +31,7 @@ public class TodoController {
         return todoService.create(todo);
     }
 
-    @GetMapping("path")
+    @GetMapping()
     public List<Todo> list() {
         return todoService.list();
     }
