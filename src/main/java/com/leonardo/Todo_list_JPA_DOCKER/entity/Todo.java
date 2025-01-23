@@ -26,12 +26,12 @@ public class Todo {
 
     @Column(name = "task_name", length=50, nullable = false, unique=false)
     private String name;
-    @Column(name = "task_description", length=50, unique=false)
+    @Column(name = "task_description", length=200, unique=false)
     private String description;
 
-    @Column(name = "task_status", length=50, nullable = false, unique=false)
+    @Column(name = "task_status", nullable = false, unique=false)
     private Boolean isFinished;
 
-    @Column(name = "task_priority", length=50, nullable = false, unique=false)
+    @Column(name = "task_priority", nullable = false, unique=false)
     private int priority;
 }
