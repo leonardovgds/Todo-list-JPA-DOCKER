@@ -2,12 +2,10 @@ package com.leonardo.Todo_list_JPA_DOCKER.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.servlet.ModelAndView;
 import com.leonardo.Todo_list_JPA_DOCKER.entity.Todo;
 import com.leonardo.Todo_list_JPA_DOCKER.service.TodoService;
-
 import java.util.List;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,8 +30,11 @@ public class TodoController {
     }
 
     @GetMapping()
-    public List<Todo> list() {
-        return todoService.list();
+    public ModelAndView list() {
+        List<Todo> todos = todoService.list();
+        ModelAndView mv = new ModelAndView("list");
+        mv.addObject("todos", todos);
+        return mv;
     }
     
     @PutMapping
