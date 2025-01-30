@@ -7,10 +7,7 @@ import com.leonardo.Todo_list_JPA_DOCKER.service.TodoService;
 
 import java.util.List;
 
-
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,11 +44,28 @@ public class TodoController {
         mv.addObject("todos", todos);
         return mv;
     }
-    
-    @PutMapping
-    public List<Todo> update(@RequestBody Todo todo) {
-        return todoService.update(todo);
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable("id") Long id, Model model) {
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo);
+        return "edit";
     }
+    
+    @PostMapping("/edit/{id}")
+    public String updateTodo(@PathVariable("id") 
+        Long id, @ModelAttribute("todo") Todo updatedTodo) {
+           Todo existingTodo = todoService.findById(id);
+
+            //update values
+            existingTodo.setName(updatedTodo.getName());
+            existingTodo.setDescription(updatedTodo.getDescription());
+            existingTodo.setPriority(updatedTodo.getPriority());
+            existingTodo.setIsFinished(updatedTodo.getIsFinished());
+
+            todoService.create(existingTodo);
+            return "redirect:/todos";
+        }
 
     //delete method
     @GetMapping("/delete/{id}")
