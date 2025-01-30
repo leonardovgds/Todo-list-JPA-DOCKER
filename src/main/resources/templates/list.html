@@ -34,7 +34,8 @@
             <td th:text="${todo.isFinished}"></td>
             <td>
                 <a class="btn btn-primary"
-                th:href="@{/todos}">Edit</button>
+                th:href="@{/todos/edit/{id}(id=${todo.id})}">Edit</button>
+
                 <a class="btn btn-danger"
                 th:href="@{/todos/delete/{id}(id=${todo.id})}"
                 onclick="return confirm('Are you sure?')">Delete</button>
