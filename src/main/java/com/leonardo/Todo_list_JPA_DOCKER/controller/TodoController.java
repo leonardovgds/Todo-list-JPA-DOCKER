@@ -5,13 +5,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.leonardo.Todo_list_JPA_DOCKER.entity.Todo;
 import com.leonardo.Todo_list_JPA_DOCKER.service.TodoService;
 
-
 import java.util.List;
+
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -25,9 +28,16 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @PostMapping
-    public List<Todo> create(@RequestBody Todo todo) {
-        return todoService.create(todo);
+    @GetMapping("/create")
+    public String createForm(Model model) {
+        model.addAttribute("todo", new Todo());
+        return "create";
+    }
+
+    @PostMapping("/create")
+    public String create(@ModelAttribute("todo") Todo todo) {
+        todoService.create(todo);
+        return "redirect:/todos";
     }
 
     @GetMapping()
