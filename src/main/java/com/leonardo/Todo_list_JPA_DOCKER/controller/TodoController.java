@@ -5,9 +5,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.leonardo.Todo_list_JPA_DOCKER.entity.Todo;
 import com.leonardo.Todo_list_JPA_DOCKER.service.TodoService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,5 +76,21 @@ public class TodoController {
         todoService.delete(id);
         return "redirect:/todos";
     }
-    
+
+    //update task status
+    @PostMapping("/toggle/{id}")
+    public ResponseEntity<Map<String, String>> toggleTodoStatus(@PathVariable Long id) {
+        // Busca a tarefa pelo ID
+        Todo todo = todoService.findById(id);
+
+        // Inverte o status (concluído/não concluído)
+        todo.setIsFinished(!todo.getIsFinished());
+
+        todoService.create(todo);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Status Updated");
+        response.put("isFinished", Boolean.toString(todo.getIsFinished()));
+        return ResponseEntity.ok(response);
+    }
 }

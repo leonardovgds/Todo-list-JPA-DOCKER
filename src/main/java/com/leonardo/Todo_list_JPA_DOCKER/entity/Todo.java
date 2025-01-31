@@ -34,4 +34,13 @@ public class Todo {
 
     @Column(name = "task_priority", nullable = false, unique=false)
     private int priority;
+
+    // Getter e Setter manualmente declarados
+    public Boolean getIsFinished() {
+        return isFinished;
+    }
+
+    public void setIsFinished(Boolean isFinished) {
+        this.isFinished = isFinished;
+    }
 }
