@@ -12,3 +12,12 @@
     width: 70%;
     text-align: center;
 }
+
+.toggled {
+    text-decoration: line-through;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
