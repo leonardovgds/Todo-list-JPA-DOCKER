@@ -33,19 +33,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="todo : ${todos}">
+            <tr th:each="todo : ${todos}" th:id="'todo-' + ${todo.id}" 
+                th:attr="data-finished=${todo.isFinished}">
               <th scope="row" th:text="${todo.id}"></th>
               <td th:text="${todo.name}"></td>
               <td th:text="${todo.description}"></td>
               <td th:text="${todo.priority}"></td>
               <td th:text="${todo.isFinished}" hidden></td>
               <td>
-              <a class="btn btn-primary"
-              th:href="@{/todos/edit/{id}(id=${todo.id})}"><i class="fa-solid fa-pen-to-square"></i></button>
+                <a class="btn btn-primary"
+                  th:href="@{/todos/edit/{id}(id=${todo.id})}">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </a>
 
-              <a class="btn btn-danger"
-              th:href="@{/todos/delete/{id}(id=${todo.id})}"
-              onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></button>
+                <a class="btn btn-danger"
+                  th:href="@{/todos/delete/{id}(id=${todo.id})}"
+                  onclick="return confirm('Are you sure?')">
+                  <i class="fa-solid fa-trash"></i>
+                </a>
+
+                <button class="btn btn-info isFinishedBtn" 
+                  th:attr="data-id=${todo.id}">
+                  <i class="fa-regular fa-circle-check"></i>
+                </button>
               </td>
             </tr>
           </tbody>
