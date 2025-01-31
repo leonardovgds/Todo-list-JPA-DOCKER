@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.mainTitle, .subTitle {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.listContainer {
+    width: 70%;
+    text-align: center;
+}
